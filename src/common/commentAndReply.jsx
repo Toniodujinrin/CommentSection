@@ -17,7 +17,9 @@ const CommentAndReply = (props) => {
         handleUpdate,
         currentUserPic,
         openReply,
-        openEdit
+        openEdit,
+        editMode,
+        replyMode
     }= props
     return ( 
         <div id='comments-and-replies'>
@@ -36,6 +38,8 @@ const CommentAndReply = (props) => {
         currentUserPic={currentUserPic}
         openReply={openReply}
         openEdit={openEdit}
+        editMode={editMode}
+        replyMode={replyMode}
         />
         {
             (replies.length !== 0)?
@@ -60,6 +64,8 @@ const CommentAndReply = (props) => {
                 currentUserPic={currentUserPic}
                 openEdit={openEdit}
                 openReply={openReply}
+                editMode={editMode}
+                replyMode={replyMode}
                 />
             </li>
             )

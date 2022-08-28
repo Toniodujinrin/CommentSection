@@ -26,7 +26,9 @@ class Reply extends Component {
             handleUpdate,
             currentUserPic,
             openReply,
-            openEdit
+            openEdit,
+            replyMode,
+            editMode
             }=this.props
         return (
             <React.Fragment>
@@ -37,22 +39,7 @@ class Reply extends Component {
 
 
        <div id='main'>
-        <div id='top-bar'>
-        <div id='user-info'> 
-        <img src={user.image.png} alt="" />
-        <p id='username'>{user.username}</p>
-        <div>{(currentUser===user.username)?<small id='identifier'>You</small>:<div></div>}</div>
-        <p>{createdAt}</p>
-        </div>
-   
-        </div>     
-        <div id='content'>
-            
-           <span id='replyingTo'>{`@${replyingTo},`}</span> <div>{(this.state.editMode)?<ActiveEdit handleUpdate={handleUpdate} content={content} commentId={commentId} id={id}/>:<div>{content}</div> }</div>
-        </div>
-    
-        </div> 
-        <div id='func-buttons'>
+       <div id='func-buttons'>
         <FunctionButtons 
         openReply={openReply} 
         user={user} 
@@ -63,9 +50,25 @@ class Reply extends Component {
         openEdit={openEdit}
         />
        </div>
+        <div id='top-bar'>
+        <div id='user-info'> 
+        <img src={user.image.png} alt="" />
+        <p id='username'>{user.username}</p>
+        <div>{(currentUser===user.username)?<small id='identifier'>You</small>:<div></div>}</div>
+        
+        </div>
+       <p>{createdAt}</p>
+        </div>     
+        <div id='content'>
+            
+           <span id='replyingTo'>{`@${replyingTo},`}</span> <div>{(editMode.state&&(editMode.commentId===commentId)&&(editMode.id===id))?<ActiveEdit handleUpdate={handleUpdate} content={content} commentId={commentId} id={id}/>:<div>{content}</div> }</div>
+        </div>
+    
+        </div> 
+   
     </div>
     {
-        (this.state.replyMode)?<ActiveReply replyingTo={user.username} uploadReply={uploadReply} commentId={commentId} currentUserPic={currentUserPic}/>:<div></div>
+        (replyMode.state&&(replyMode.id===id)&&(replyMode.commentId===commentId))?<ActiveReply replyingTo={user.username} uploadReply={uploadReply} commentId={commentId} currentUserPic={currentUserPic}/>:<div></div>
     }
     </React.Fragment>
         );

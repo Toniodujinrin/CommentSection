@@ -11,7 +11,9 @@ const Comments = (props) => {
         handleUpdate,
         currentUserPic,
         openReply,
-        openEdit
+        openEdit,
+        editMode,
+        replyMode
     
     }=props
     return ( 
@@ -38,6 +40,8 @@ const Comments = (props) => {
                     currentUserPic={currentUserPic}
                     openReply={openReply}
                     openEdit={openEdit}
+                    editMode={editMode}
+                    replyMode={replyMode}
                     />
                     } </li>
 

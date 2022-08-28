@@ -1,8 +1,3 @@
-/* Moderate blue: hsl(238, 40%, 52%)
- Soft Red: hsl(358, 79%, 66%)
- Light grayish blue: hsl(239, 57%, 85%)
- Pale red: hsl(357, 100%, 86%) */
-
 body {
   background-color:  
   rgb(234, 236, 241);
@@ -13,18 +8,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-
-
 input{
   width:20rem;
   height: 80%;
 }
-
 #reply{
   position: relative;
-
-  
   width:60vw;
   padding: 1rem;
   background-color: white;
@@ -36,9 +25,7 @@ input{
   margin: auto;
   font-size: normal;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-
 }
-
 #list-of-replies{
   border-left: solid hsl(239, 57%, 85%);
   width: 80%;
@@ -47,21 +34,16 @@ input{
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-
-  
- 
+  list-style: none;
 }
-
 button{
   color:hsl(238, 40%, 52%) ;
 }
-
 #comment{
   width:80%;
   padding: 2rem;
   background-color: white;
   display: flex;
-  justify-content: space-around;
   border-radius: 10px;
   margin: auto;
   margin-top: 0.5rem;
@@ -69,31 +51,32 @@ button{
   font-size: normal;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   height: 40%;
-
-}
-#score{
-  width: 20%;
 }
 #user-info{
   display: flex;
   flex-direction: row;
   width: 80%;
-  justify-content: space-evenly;
 }
 #username{
   color: black;
   font-weight: bold;
   font-size: 1.5rem;
+  margin-left: 1rem;
 }
 #top-bar{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  width: 60%;
+  margin-bottom: 1rem;
 }
 #main{
   width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
-
 #increase,#decrease{
   cursor: pointer;
   font-size: large;
@@ -103,7 +86,6 @@ button{
   font-weight: bold;
   text-align: center;
 }
-
 #score-button{
   display: flex;
   flex-direction: column;
@@ -115,21 +97,29 @@ button{
   width: 3rem;
   color: hsl(239, 57%, 85%);
   padding: 2rem;
-  margin-right:1rem;
-}
-#input{
-  width:60%;
-
+  margin-right:4rem;
 }
 #comment-field{
-  width:100%;
-  height: 80%;
-  text-align: start;
-  
-  
+ width: 100%;
+ height: 100%;
+ resize: none;
 }
 #profile-pic{
  justify-self: baseline
+}
+#active-reply{
+  width:60vw;
+  padding: 1rem;
+  background-color: white;
+  display: flex;
+  border-radius: 5px;
+  margin: auto;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: normal;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  height: 30vh;
+  justify-content: space-between;
 }
 #active-comment{
   width:80vw;
@@ -144,20 +134,17 @@ button{
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   height: 30vh;
   justify-content: space-between;
-
 }
 #active-edit{
   width: 100%;
   height: 100%;
 }
-  
 #replyingTo{
   color: rgb(84, 87, 182);
 }
 .icon{
   margin-right: 1rem;
 }
-
 .function-button{
   font-weight: bold;
   display: flex;
@@ -165,15 +152,9 @@ button{
   cursor: pointer;
   margin-right: 0.5rem;
 }
-
-#edit-button{
-  color: rgb(84, 87, 182);
-}
-#reply-button{
+#reply-button,#edit-button{
   color:rgb(84, 87, 182);
-
 }
-
 #delete-button{
   color:#d11a2a ;
 }
@@ -181,18 +162,14 @@ button{
   display: flex;
   flex: row;
 }
-
-
-
 #user-functions{
   display: flex;
   flex-direction: row;
 }
 img{
-  width: 3rem;
-  height: 3rem;
+  width: 5rem;
+  height: 5rem;
 }
-
 #comments-and-replies{
   display: flex;
   flex-direction: column;
@@ -204,13 +181,18 @@ img{
   padding: 0.7rem;
   border-radius: 5px;
 }
-
-@media screen and (max-width:645px) {
+#func-buttons{
+  align-self: flex-end;
+ 
+}
+#content{
+  width: 100%;
+}
+@media screen and (max-width:925px) {
   #comment{
     display: flex;
     flex-direction:column-reverse;
-   
-  }
+   }
   #score-button{
     display: flex;
     flex-direction: row;
@@ -221,18 +203,21 @@ img{
   #reply{
     display: flex;
     flex-direction:column-reverse;
-   
-  
-  }
+    padding: 1rem;
+   }
   img{
-    width: 15%;
-    height:15%;
+    width: 3rem;
+    height: 3rem;
   }
   #main{
-    align-self: center;
+    align-items: flex-start;
+    width: 100%;
   }
   #top-bar{
-    justify-content:space-between;
+    justify-content: space-between;
+    width: 100%;
+    flex-direction:column;
+    
     
   }
   #func-buttons{

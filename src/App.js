@@ -5,55 +5,63 @@ import Comments from './comments';
 class App extends Component {
   state={
     data : getData(),
-    editMode:{},
-    replyMode:{}
+    editMode:{
+      state:false,
+      commentId:'',
+      id:''
+     },
+    replyMode:{
+      state:false,
+      commentId:'',
+      id:''
+    }
   }
   uploadComment=(input)=>{
-    const data = this.state.data
-    const image = data.currentUser.image
-    const createdAt = 'today'
-    const replies = []
-    const username= data.currentUser.username
+    const data = this.state.data;
+    const image = data.currentUser.image;
+    const createdAt = 'today';
+    const replies = [];
+    const username= data.currentUser.username;
     const score = 0;
     const content = input; 
-    const user ={image,username}
-    const id = data.comments.length + 1
-    const comment = {id,createdAt,score,content,user,replies}
-    data.comments.push(comment)
-    this.setState(data)
-    console.log(this.state.data)
+    const user ={image,username};
+    const id = data.comments.length + 1;
+    const comment = {id,createdAt,score,content,user,replies};
+    data.comments.push(comment);
+    this.setState(data);
+    console.log(this.state.data);
 
-  }
+  };
   handleIncrease=(id,commentId,)=>{
     if(id){
    const data = this.state.data
-   const comment = data.comments.filter(commentid=> commentid.id === commentId )
-   const reply = comment[0].replies.filter(reply=> reply.id===id)
-   reply[0].score= reply[0].score+1
+   const comment = data.comments.filter(commentid=> commentid.id === commentId );
+   const reply = comment[0].replies.filter(reply=> reply.id===id);
+   reply[0].score= reply[0].score+1;
    
    this.setState({data})}
    else {
-    const data = this.state.data
-    const comment = data.comments.filter(comment=>comment.id===commentId)
-    comment[0].score=comment[0].score+1
-    this.setState({data})
+    const data = this.state.data;
+    const comment = data.comments.filter(comment=>comment.id===commentId);
+    comment[0].score=comment[0].score+1;
+    this.setState({data});
    }
    
   }
   handleDecrease=(id,commentId)=>{
     if(id){
-    const data = this.state.data
-    const comment = data.comments.filter(comment=> comment.id === commentId )
-    const reply = comment[0].replies.filter(reply=> reply.id===id)
-    reply[0].score= reply[0].score-1
-    this.setState({data})
+    const data = this.state.data;
+    const comment = data.comments.filter(comment=> comment.id === commentId );
+    const reply = comment[0].replies.filter(reply=> reply.id===id);
+    reply[0].score= reply[0].score-1;
+    this.setState({data});
     }
     else {
-      const data = this.state.data
-      const comment = data.comments.filter(comment=>comment.id===commentId)
-      comment[0].score=comment[0].score-1
-      this.setState({data})
-    }
+      const data = this.state.data;
+      const comment = data.comments.filter(comment=>comment.id===commentId);
+      comment[0].score=comment[0].score-1;
+      this.setState({data});
+    };
 
   }
 
@@ -68,7 +76,10 @@ class App extends Component {
 
   const newReply={id,content,createdAt,score,user,replyingTo};
   comment[0].replies.push(newReply);
-  this.setState({data})
+  this.setState({data});
+  const replyMode= {...this.state.replyMode};
+  replyMode.state= false ;
+  this.setState({replyMode});
     
 
   }
@@ -77,9 +88,9 @@ class App extends Component {
   if(id){
    const data = {...this.state.data};
    const comment = data.comments.filter(comment=>comment.id===commentId);
-   const newReplies = comment[0].replies.filter(reply=>reply.id !== id)
-   comment[0].replies =newReplies
-   this.setState({data})
+   const newReplies = comment[0].replies.filter(reply=>reply.id !== id);
+   comment[0].replies =newReplies;
+   this.setState({data});
   }
   else {
     const data = {...this.state.data};
@@ -87,8 +98,8 @@ class App extends Component {
     data.comments= newComments;
     this.setState({data});
 
-  }
-  }
+  };
+  };
 
   handleUpdate=(commentId,id,content)=>{
     if(id){
@@ -103,21 +114,35 @@ class App extends Component {
       const comment = data.comments.filter(comment=>comment.id===commentId);
       comment[0].content=content;
       this.setState({data});
-    }
+    };
+    const editMode = {...this.state.editMode};
+    editMode.state=false;
+    this.setState({editMode});
     
 
-  }
+  };
   openEdit=(commentId,id)=>{
-    console.log(commentId,id)
+   
+    const activeEdit= {...this.state.editMode};
+    activeEdit.state=!this.state.editMode.state;
+    activeEdit.id=id;
+    activeEdit.commentId=commentId;
+    this.setState({editMode:activeEdit});
 
-  }
+  };
   openReply=(commentId,id)=>{
-    console.log(commentId,id)
+    
+    const activeReply= {...this.state.replyMode};
+    activeReply.state=!this.state.replyMode.state ;
+    activeReply.id=id;
+    activeReply.commentId=commentId;
+    this.setState({replyMode:activeReply});
+    
 
-  }
+  };
   
   render() { 
-    const {data}= this.state
+    const {data,editMode,replyMode}= this.state;
     return (
       <React.Fragment>
       <Comments 
@@ -131,6 +156,8 @@ class App extends Component {
       handleUpdate={this.handleUpdate}
       openReply={this.openReply}
       openEdit={this.openEdit}
+      editMode={editMode}
+      replyMode={replyMode}
       />
       
       <ActiveComment 

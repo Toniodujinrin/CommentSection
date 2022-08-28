@@ -20,7 +20,7 @@ handleSubmit=(e)=>{
         return (
             
            <form onSubmit={this.handleSubmit}>
-            <div id="active-comment">
+            <div id="active-reply">
             <div>
                 <img src={currentUserPic.png} alt="" />
             </div> 

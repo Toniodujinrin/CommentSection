@@ -10,6 +10,7 @@ class Comment extends Component {
 
 
     render() { 
+        const id = undefined
         const{
             currentUser,
             score,
@@ -24,7 +25,9 @@ class Comment extends Component {
             handleUpdate,
             currentUserPic,
             openEdit,
-            openReply
+            openReply,
+            editMode,
+            replyMode
         }= this.props
         return (
             <React.Fragment>
@@ -38,16 +41,9 @@ class Comment extends Component {
             </div>
     
     
-           <div id='main'>
-            <div id='top-bar'>
-            <div id='user-info'> 
-            <img src={user.image.png} alt="" />
-            <p id='username'>{user.username}</p>
-            <div>{(currentUser===user.username)?<small id='identifier'>You</small>:<div></div>}</div>
-            
-            <p>{createdAt}</p>
-            </div>
-            <FunctionButtons 
+           <div id='main'>   
+           <div id='func-buttons'>
+           <FunctionButtons 
             openEdit={openEdit} 
             openReply={openReply} 
             user={user} 
@@ -55,10 +51,21 @@ class Comment extends Component {
             handleDelete={handleDelete} 
             commentId={commentId}/>
             </div>
+            <div id='top-bar'>
+            <div id='user-info'> 
+            <img src={user.image.png} alt="" />
+            <p id='username'>{user.username}</p>
+            <div>{(currentUser===user.username)?<small id='identifier'>You</small>:<div></div>}</div>
+            </div>
+            <p>{createdAt}</p>
+            </div>
+            
+         
+            
             <div id='content'>
             <div>
                 {
-                (this.state.editMode)?
+                (editMode.state&&editMode.commentId==commentId&&editMode.id===id)?
                 <ActiveEdit 
                 handleUpdate={handleUpdate} 
                 content={content} 
@@ -75,7 +82,7 @@ class Comment extends Component {
            
         </div>
         {
-        (this.state.replyMode)?<ActiveReply replyingTo={user.username} uploadReply={uploadReply} commentId={commentId} currentUserPic={currentUserPic}/>:<div></div>
+        (replyMode.state&&replyMode.commentId===commentId&&replyMode.id===id)?<ActiveReply replyingTo={user.username} uploadReply={uploadReply} commentId={commentId} currentUserPic={currentUserPic}/>:<div></div>
         }
         </React.Fragment>
         );
