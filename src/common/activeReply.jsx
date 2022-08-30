@@ -21,15 +21,17 @@ handleSubmit=(e)=>{
             
            <form onSubmit={this.handleSubmit}>
             <div id="active-reply">
+            <div id='main-reply'>
             <div>
                 <img src={currentUserPic.png} alt="" />
             </div> 
-            <div>
+            <div id='text-area'>
                 <Input 
                  kind='comment'
                  handleChange= {this.handleChange} 
                  value={reply} >
                 </Input>
+            </div>
             </div>
             <div>
             <button className='button' disabled={!reply.length} onClick={()=>this.props.uploadReply(reply,replyingTo,commentId)}>

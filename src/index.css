@@ -12,6 +12,10 @@ input{
   width:20rem;
   height: 80%;
 }
+#input{
+  width: 60%;
+
+}
 #reply{
   position: relative;
   width:60vw;
@@ -25,6 +29,15 @@ input{
   margin: auto;
   font-size: normal;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+#main-reply{
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+}
+#text-area{
+  width: 80%;
+  margin-left: 1rem;
 }
 #list-of-replies{
   border-left: solid hsl(239, 57%, 85%);
@@ -101,11 +114,17 @@ button{
 }
 #comment-field{
  width: 100%;
- height: 100%;
+ height: 70%;
  resize: none;
 }
 #profile-pic{
- justify-self: baseline
+ justify-self: baseline;
+ width: 20%;
+ text-align: center;
+}
+#send-button-div{
+  width: 20%;
+  text-align: center;
 }
 #active-reply{
   width:60vw;
@@ -133,7 +152,7 @@ button{
   font-size: normal;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   height: 30vh;
-  justify-content: space-between;
+  
 }
 #active-edit{
   width: 100%;
@@ -223,5 +242,13 @@ img{
   #func-buttons{
     align-self: flex-end;
     justify-self: baseline;
+  }
+  #active-reply,#active-comment{
+    display: flex;
+    flex-direction:column;
+  }
+  #main-reply{
+    width: 100%;
+    height: 80%;
   }
 }
